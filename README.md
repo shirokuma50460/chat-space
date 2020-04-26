@@ -20,7 +20,7 @@
 
 ### Association
 - has_many :users, through: :groups_users
-- has_many :gropususers
+- has_many :gropus_users
 - has_many :chats
 
 
