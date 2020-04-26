@@ -2,33 +2,33 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|nickname|string|null: fales, index|
+|nickname|string|null: fales, index: true|
 |password|string|null: fales|
 |email|string|null: false, unique: true|
 
 ### Association
-- has_many :groups
-- has_many :gropususers
-- has_many :chat
+- has_many :groups, through: :groups_users
+- has_many :groups_users
+- has_many :chats
 
 
 ## groupテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|groupname|string|null: fales|
+|name|string|null: fales|
 
 ### Association
-- has_many :users
+- has_many :users, through: :groups_users
 - has_many :gropususers
-- has_many :chat
+- has_many :chats
 
 
 ## chatテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: fales|
-|group_id|integer|null: fales|
+|user|references|null: fales, foreign_key: true|
+|group|references|null: fales, foreign_key: true|
 |body|text|
 |image|text|
 
@@ -41,8 +41,8 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
+|group|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :group
