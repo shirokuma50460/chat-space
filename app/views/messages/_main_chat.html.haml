@@ -2,41 +2,29 @@
   .chat-main__main-header
     .chat-main__main-header__group-box
       .chat-main__main-header__group-box__name
-        グループ名
+        = @group.name
       .chat-main__main-header__group-box__edit-box
-        = link_to "Edit"
+        = link_to edit_group_path(@group) do
+          = "Edit"
     .chat-main__main-header__group-box__list
-      menber:list
-
+      - @group.users.each do |user|
+        = user.name
   .chat-main__messeages
-    .chat-main__messeages__box
-      .chat-main__messeages__box__name
-        masa
-      .chat-main__messeages__box__day-time
-        daytime
-    .chat-main__messeages__message
-      メッセージ
-    .chat-main__messeages__box
-      .chat-main__messeages__box__name
-        masa
-      .chat-main__messeages__box__day-time
-        daytime
-    .chat-main__messeages__message
-      メッセージ
-    .chat-main__messeages__box
-      .chat-main__messeages__box__name
-        masa
-      .chat-main__messeages__box__day-time
-        daytime
-    .chat-main__messeages__message
-      メッセージ
-
+    = render @messages
+    -# = render partial: "message", locals: { message: @messages}
 
   .chat-main__form
-    %input{type: "text", class: 'chat-main__form__box', placeholder: "type a message"}
-      %label{class: "chat-main__form__image"}
-        = icon('fas', 'image')
-        %input{type: "file", class: "image"}
-    %input{type: 'submit', class: 'chat-main__form__send', value: 'send'}
+    = form_for [@group, @message] do |f|
+      .parent
+        = f.text_field :content, class: 'parent-text', placeholder: 'type a message'
+        = f.label :image, class: 'chat-main__form__image' do
+          = icon('fas', 'image', class: 'icon')
+          = f.file_field :image, class: 'file'
+      = f.submit 'Send', class: 'chat-main__form__send'
 
-        
+  -# .chat-main__form
+  -#   %input{type: "text", class: 'chat-main__form__box', placeholder: "type a message"}
+  -#     %label{class: "chat-main__form__image"}
+  -#       = icon('fas', 'image')
+  -#       %input{type: "file", class: "image"}
+  -#   %input{type: 'submit', class: 'chat-main__form__send', value: 'send'}
