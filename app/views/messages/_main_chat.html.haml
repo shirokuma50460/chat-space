@@ -7,11 +7,11 @@
         = link_to edit_group_path(@group) do
           = "Edit"
     .chat-main__main-header__group-box__list
+      Menber:
       - @group.users.each do |user|
         = user.name
   .chat-main__messeages
     = render @messages
-    -# = render partial: "message", locals: { message: @messages}
 
   .chat-main__form
     = form_for [@group, @message] do |f|
@@ -21,10 +21,3 @@
           = icon('fas', 'image', class: 'icon')
           = f.file_field :image, class: 'file'
       = f.submit 'Send', class: 'chat-main__form__send'
-
-  -# .chat-main__form
-  -#   %input{type: "text", class: 'chat-main__form__box', placeholder: "type a message"}
-  -#     %label{class: "chat-main__form__image"}
-  -#       = icon('fas', 'image')
-  -#       %input{type: "file", class: "image"}
-  -#   %input{type: 'submit', class: 'chat-main__form__send', value: 'send'}
