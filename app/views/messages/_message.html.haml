@@ -10,23 +10,3 @@
         = message.content
     = image_tag message.image.url, class: 'lower-message__image' if message.image.present?
 
--# .chat-main__messeages__box
--#   .chat-main__messeages__box__name
--#     = message.user.name
--#   .chat-main__messeages__box__day-time
--#     = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
--# .chat-main__messeages__message
--#   - if message.content.present?
--#     %p.lower-message__content
--#       = message.content
--#   = image_tag message.image.url, class: 'lower-message__image' if message.image.present?
-
-  -# .chat-main__messeages
-  -#   .chat-main__messeages__box
-  -#     .chat-main__messeages__box__name
-  -#       masa
-  -#     .chat-main__messeages__box__day-time
-  -#       daytime
-  -#   .chat-main__messeages__message
-  -#     メッセージ
-
